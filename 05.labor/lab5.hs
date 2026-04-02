@@ -120,4 +120,6 @@ main = do
     let madarls2 = concatMap  (<> " ") [t1 | (t1,t2,t3) <- ls1]
     let eredmeny2 = ps2 ls "ms" 
     putStrLn $ madarls2 <> " " <> "ms" <> "-ben populacio szam: " ++ show eredmeny2
+
+
         
