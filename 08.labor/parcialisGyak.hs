@@ -32,6 +32,13 @@ fel1Main = do
             mapM_ (\v -> putStrLn (" - " ++ v)) ls2
 
 
+varosokSzurese n lista = do
+    let talalatok = sort [nev | (nev, lakos) <- lista, lakos > n]
+    if null talalatok
+        then putStrLn $ "Nincs " ++ show n ++ " erteknel nagyobb nepesseg ertekkel rendelkezo varos."
+        else do
+            putStrLn $ "A(z) " ++ show n ++ " nepesseg erteknel nagyobbal rendelkezo varosok a kovetkezok:"
+            mapM_ (\v -> putStrLn $ "- " ++ v) talalatok
 -- 2. Írjunk egy Haskell függvényt, amely meghatározza egy bemeneti egész
 -- számokat tartalmazó lista azon elemeit, amelyek nem tartalmazzák a 0
 -- számjegyet. Az eredmény számokat szóközzel elválasztva írjuk ki a
@@ -53,6 +60,13 @@ fel2 = do
         then putStrLn "Nincsenek olyan szamok ,amelyeknek nem tartalmazzak a 0 szamjegyet"
         else putStrLn ("A 0 szamjegyet nem tartalmazo szamok a kovetkezok: " ++ intercalate " " (map show jo)) --vagy intercalate helyett unwords!!!
 
+nincsBenneNulla lista = do
+    let eredmeny = [x | x <- lista, '0' `notElem` show x]
+    if null eredmeny
+        then putStrLn "Nincsenek olyan szamok, amelyek nem tartalmazzak a 0 szamjegyet."
+        else do
+            putStr "A 0 szamjegyet nem tartalmazo szamok a kovetkezok: "
+            putStrLn $ unwords (map show eredmeny)
 -- 3. Egy listában karakterláncok vannak, írjunk egy Haskell programot, amely kiírja
 -- azokat a karakterláncokat a képernyőre egymás alá rendezve ábécé
 -- sorrendbe, amelyekben nincsenek számjegyek.
@@ -81,6 +95,13 @@ fel3 = do
             putStrLn "A karakterlancok,amelyek nem tartalmaznak szamokat: "
             mapM_ putStrLn jo -- vagy atadaskor is lehet rendezni
 
+szamjegyNelkuli lista = do
+    let szurt = sort [s | s <- lista, not (any isDigit s)]
+    if null szurt
+        then putStrLn "Nincsenek olyan karakterlancok, amelyek nem tartalmaznak szamot."
+        else do
+            putStrLn "A karakterlancok, amelyek nem tartalmaznak szamokat:"
+            mapM_ putStrLn szurt
 
 -- 4. Írjunk egy Haskell programot, amely meghatározza, hogy az s karakterláncnak
 -- melyek a szomszédjai az lsS karakterláncokat tartalmazó listából, ahol egy
@@ -120,6 +141,15 @@ main = do
                 Just j  -> putStrLn $ "jobboldali szomszedja pedig " ++ j
                 Nothing -> putStrLn "nincs jobboldali szomszedja."
 
+szomszedok s nyersLista = do
+    let rendezett = sort (words nyersLista)
+    case elemIndex s rendezett of
+        Nothing -> putStrLn "A keresett elem nincs a listaban."
+        Just i  -> do
+            let bal = if i > 0 then rendezett !! (i-1) else "nincs"
+            let jobb = if i < length rendezett - 1 then rendezett !! (i+1) else "nincs"
+            putStrLn $ s ++ " baloldali szomszedja " ++ bal ++ ", jobboldali szomszedja pedig " ++ jobb
+
 -- 5. Egy [(String, Int, Int)] típusú lista eleme egy telefon márkanevet, egy eladási
 -- értéket, és egy árat tartalmaz. Írjunk egy Haskell programot, amely
 -- meghatározza azokat a telefonokat, amelyekből a legtöbbet adtak el, illetve
@@ -148,6 +178,16 @@ fel5 = do
     mapM_ (putStrLn . show) megoldas
     print ls2
 
+
+maxEladas lista = do
+    let eladasok = [e | (_, e, _) <- lista]
+    if null eladasok 
+        then putStrLn "Ures lista."
+        else do
+            let m = maximum eladasok
+            let nevek = sort [nev | (nev, e, _) <- lista, e == m]
+            putStrLn $ "A maximalis eladasi ertek " ++ show m ++ ". A telefonok, amelyeknek ennyi az eladasi erteke a kovetkezok:"
+            mapM_ (\n -> putStrLn $ "- " ++ n) nevek
 -- 6. Írj egy Haskell függvényt, melynek egy lista a bemenete, és megadja azokat a
 -- számokat, amelyek előfordulási száma páratlan. Az eredményt írasd ki a
 -- példában szereplő formában, előfordulási érték szerint rendezve.
@@ -164,3 +204,13 @@ fel5 = do
 -- Elofordulas: 1 -> Ertek: 7
 -- Elofordulas: 3 -> Ertek: 4
 -- Elofordulas: 5 -> Ertek: 2
+
+paratlanElofordulas lista = do
+    -- Csoportosítunk: [[1,1], [2,2,2], [3]] -> kiszámoljuk a hosszt és az értéket
+    let statisztika = [(length g, head g) | g <- group (sort lista), odd (length g)]
+    -- Rendezés előfordulás szerint (első elem a tuple-ben)
+    let rendezett = sortOn fst statisztika
+    
+    if null rendezett
+        then putStrLn "Nincs paratlan elofordulasi ertekkel rendelkezo szam."
+        else mapM_ (\(db, ertek) -> putStrLn $ "Elofordulas: " ++ show db ++ " -> Ertek: " ++ show ertek) rendezett
