@@ -1,0 +1,9 @@
+Christopher Nolan, 3, 9.266666666666666
+Quentin Tarantino, 3, 8.666666666666666
+Wachowski Sisters, 1, 8.8
+Chad Stahelski, 1, 8.1
+James Cameron, 2, 7.95
+Ridley Scott, 2, 8.55
+Francis Ford Coppola, 1, 9.5
+Frank Darabont, 1, 9.6
+Robert Zemeckis, 1, 8.9

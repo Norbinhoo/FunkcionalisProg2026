@@ -1,0 +1,5 @@
+Anna,Informatika,2,9.45,32
+Csilla,Informatika,3,9.8,35
+Ferenc,Matematika,3,9.1,33
+Helga,Informatika,2,9.25,31
+Karoly,Informatika,4,9.95,38
