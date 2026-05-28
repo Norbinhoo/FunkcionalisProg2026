@@ -1,0 +1,10 @@
+Koala Australia Emlos True 4
+Kenguru Australia Emlos False 5
+Farkas Europa Kutyaalakok False 6
+Zebra Afrika Pataskoruak False 7
+Oroszlan Afrika Macskafelek True 8
+Panda Asia Emlos True 9
+Tigris Asia Macskafelek True 10
+Zsiraf Afrika Pataskoruak False 12
+Medve Europa Emlos False 15
+Elefant Afrika Emlos True 25

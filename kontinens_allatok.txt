@@ -1,0 +1,6 @@
+A `Afrika` adatait:
+
+- atlageletkor: `13.0`
+- a kontinensen elo allatok: `Oroszlan, Elefant, Zsiraf, Zebra`
+- a kontinensen elo allatok szama: `4`
+- a kontinensen elo veszelyeztett allatok szama: `2`

@@ -1,0 +1,4 @@
+Jogurt;Tejtermek;2.5;100;True
+Kenyer;Pekaru;2.0;50;True
+Tej;Tejtermek;3.0;70;True
+h;h;5.0;1;True

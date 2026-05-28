@@ -1,0 +1,3 @@
+Elefant Afrika Emlos True 25
+Medve Europa Emlos False 15
+Zsiraf Afrika Pataskoruak False 12
